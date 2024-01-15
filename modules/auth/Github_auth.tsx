@@ -10,9 +10,9 @@ const GithubAuth = async () => {
       });
 
       if (error) {
-        console.error("Error signing in with Github:", error.message);
+        return <div>Sign-In Failed</div>;
       } else {
-        console.log("Successfully initiated Github", data);
+        return <div>Sign-In successfull</div>;
       }
     } catch (error: any) {
       console.error("Unexpected error:", error.message);

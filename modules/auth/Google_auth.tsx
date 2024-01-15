@@ -10,16 +10,28 @@ const GoogleAuth = async () => {
       });
 
       if (error) {
-        console.error("Error signing in with Google:", error.message);
+        return <div>Sign-In Failed</div>;
       } else {
-        console.log("Successfully initiated Google OAuth sign-in:", data);
+        return <div>Sign-In Done</div>;
       }
     } catch (error: any) {
       console.error("Unexpected error:", error.message);
     }
   };
-
-  return <button onClick={signInWithGoogle}>Sign In with Google</button>;
+  const getSession = async () => {
+    try {
+      const { data, error } = await supabase.auth.getSession();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div>
+      <button onClick={signInWithGoogle}>Sign In with Google</button>
+      <button onClick={getSession}>Get Session</button>;
+    </div>
+  );
 };
 
 export default GoogleAuth;
