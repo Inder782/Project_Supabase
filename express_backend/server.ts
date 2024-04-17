@@ -2,11 +2,12 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { users } from "./mock_data";
+import { connectTodb } from "./lib/actions/mongoose";
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
-
+connectTodb();
 app.get("/", (req: Request, res: Response) => {
   const { username, pwd } = req.headers;
 
