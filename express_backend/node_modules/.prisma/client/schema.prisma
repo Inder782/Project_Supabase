@@ -1,20 +1,28 @@
-datasource db{
-    provider = "mongodb"
-    url = env("mongo_url")
-}
-generator client{
-    provider = "prisma-client-js"
+//schema file
+
+datasource db {
+  provider = "postgresql"
+  url      = env("post_url")
 }
 
-model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String    @unique
-  title    String
-  body     String
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
-model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String?
+model user {
+  id Int @id @default(autoincrement())
+  name String
+  last String
+  Age Int
+  email  String
+}
+
+model Stocks{
+  id Int @id @default(autoincrement())
+  Open Int
+  High Int
+  Low Int
+  Close Int
+  Adj_Close Float
 }
