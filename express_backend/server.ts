@@ -1,6 +1,7 @@
 // server.ts
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -15,7 +16,9 @@ interface user_data {
   age: number;
   email_: String;
 }
-app.get("/", async (req: Request, res: Response) => {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.post("/create", async (req: Request, res: Response) => {
   // create a new user
   const { user, last_name, age, email_ } = req.body;
   console.log(req.body);
