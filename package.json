@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@types/mongoose": "^5.11.97",
+    "body-parser": "^1.20.2",
     "mongoose": "^8.3.2"
   }
 }

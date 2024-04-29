@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    const socket = new WebSocket("ws://localhost:3000");
+
+    // connection opened
+    socket.addEventListener("open", function (event) {
+      socket.send("This is the first message");
+    });
+
+    // listen for messages
+
+    socket.addEventListener("message", function (event) {
+      console.log("Message being sent ", event.data);
+    });
+    const send_message = () => {
+      socket.send("This will be sent to the client");
+    };
+  </script>
+  <body>
+    <button onclick="send_message()">Send message</button>
+  </body>
+</html>
